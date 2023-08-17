@@ -27,4 +27,7 @@ pytest --day_name [YOUR OPTION] "tests\unit\test_addoption.py"
 Here the available `OPTIONS` are `sat`, `sun`, `mon`, `tue`, `wed`, `thu`, `fri`
 
 For example,
+
+```commandline
 pytest --day_name sun "tests\unit\test_addoption.py" 
+```
