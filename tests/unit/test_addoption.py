@@ -1,2 +1,2 @@
-def test_day_code(day_name):
-    assert day_name == "007"
+def test_pass_gen(pass_gen):
+    assert pass_gen == "OK"
