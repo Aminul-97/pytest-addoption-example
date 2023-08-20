@@ -28,8 +28,8 @@ The default values for the above arguments are as follows,
 
 | Args | Default value |
 | --- | --- |
-| --length | 10 |
-| --no_of_chars| 7 |
+| `--length` | 10 |
+| `--no_of_chars` | 7 |
 
 You can run the test in default mode by using the command below,
 ```cmd
