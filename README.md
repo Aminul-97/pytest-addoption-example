@@ -20,14 +20,23 @@ pip install -r requirements.txt
 If you don't have Pip installed please follow instructions online on how to do it.
 
 ## How To Run the Tests
-To run the  Tests, from the root of the repo run
-```commandline
-pytest --day_name [YOUR OPTION] "tests\unit\test_addoption.py" 
+There are two arguments you can pass to the test.
+1. `--length` = Provide the length of the password
+2. `--no_of_chars` = Provide the number of alphabets for the password
+
+The default values for the above arguments are as follows,
+
+| Args | Default value |
+| --- | --- |
+| --length | 10 |
+| --no_of_chars| 7 |
+
+You can run the test in default mode by using the command below,
+```cmd
+pytest "tests\unit\test_addoption.py"
 ```
-Here the available `OPTIONS` are `sat`, `sun`, `mon`, `tue`, `wed`, `thu`, `fri`
 
-For example,
-
-```commandline
-pytest --day_name sun "tests\unit\test_addoption.py" 
+You can also pass arguments like the ones below,
+```cmd
+pytest --length=10 --no_of_chars=6 "tests\unit\test_addoption.py"
 ```
