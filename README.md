@@ -21,7 +21,7 @@ If you don't have Pip installed please follow instructions online on how to do i
 
 ## How To Run the Tests
 There are two arguments you can pass to the test.
-1. `--length` = Provide the length of the password
+1. `--length` = Provide the length of the password (Total number of characters)
 2. `--no_of_chars` = Provide the number of alphabets for the password
 
 The default values for the above arguments are as follows,
@@ -33,10 +33,10 @@ The default values for the above arguments are as follows,
 
 You can run the test in default mode by using the command below,
 ```cmd
-pytest "tests\unit\test_addoption.py"
+pytest
 ```
 
 You can also pass arguments like the ones below,
 ```cmd
-pytest --length=10 --no_of_chars=6 "tests\unit\test_addoption.py"
+pytest --length=10 --no_of_chars=6
 ```
