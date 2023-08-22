@@ -1,6 +1,5 @@
 import string
 import random
-from itertools import cycle
 
 
 def generate_password(length: int, num_alphanumeric: int) -> str:
