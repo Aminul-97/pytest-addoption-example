@@ -1,61 +1,46 @@
 import string
 import random
- 
- 
-# store all characters in lists
-lowercase_set = list(string.ascii_lowercase)  # Lowercase character set
-uppercase_set = list(string.ascii_uppercase)  # Uppercase character set
-digit_set = list(string.digits)    # Digit set
-punc_set = list(string.punctuation)  # Special character set
- 
-# Function to generate password
-def generate_password(numOFnum, numOFchar):
-    
-    # shuffle all lists
-    random.shuffle(lowercase_set)
-    random.shuffle(uppercase_set)
-    random.shuffle(digit_set)
-    random.shuffle(punc_set)
-    
-    result = []  # Holds the result
-    flag = 0
-    
-    for x in range(int(numOFchar)):
-        if flag == 1:
-            result.append(lowercase_set[x])
-            flag = 0
-        else :
-            result.append(uppercase_set[x])
-            flag = 1
-    
+from itertools import cycle
 
-    for x in range(int(numOFnum)):
-        if flag == 1:
-            result.append(digit_set[x])
-            flag = 0
-        else :
-            result.append(punc_set[x])
-            flag = 1
 
-    
-    # shuffle result to generate password
-    random.shuffle(result)
-     
-     
-    # join result
-    password = "".join(result)
+def generate_password(length: int, num_alphanumeric: int) -> str:
+    """
+    Generate a password of a given length with a given number of alphanumeric characters.
+
+    :param length: Total number of characters in the password
+    :param num_alphanumeric: Number of alphanumeric characters in the password
+
+    :return: Password string
+    """
+    lowercase_letters = string.ascii_lowercase
+    uppercase_letters = string.ascii_uppercase
+    digits = string.digits
+
+    # Ensure the number of alphanumeric characters is within bounds
+    num_alphanumeric = max(0, min(num_alphanumeric, length))
+
+    # Calculate the number of remaining characters needed
+    num_remaining = length - num_alphanumeric
+
+    # Generate a list of alphanumeric characters
+    alphanumeric_chars = random.sample(
+        lowercase_letters + uppercase_letters + digits, num_alphanumeric
+    )
+
+    # Generate a list of remaining characters
+    remaining_chars = random.choices(
+        string.ascii_letters + string.digits, k=num_remaining
+    )
+
+    # Combine the two lists and shuffle
+    password_chars = alphanumeric_chars + remaining_chars
+    random.shuffle(password_chars)
+
+    # Create the password string
+    password = "".join(password_chars)
     return password
 
 
-
-
-# Ask user about the number of characters
-# pass_length = input("How many characters do you want in your password? ")
-# no_of_chars = input("No of letters [ Should be less than "+ pass_length +" ] :")
-
-# no_of_num = int(pass_length) - int(no_of_chars)
-
-# password = generate_password(int(no_of_num), int(no_of_chars))
- 
-
-# print("Strong Password: ", password)
+# if __name__ == "__main__":
+#     password = generate_password2(16, 10)
+#     print(password)

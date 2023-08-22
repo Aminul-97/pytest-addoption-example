@@ -1,35 +1,38 @@
 import pytest
-from src.pass_gen import (generate_password)
+from src.pass_gen import generate_password
 
 
-# A simple fixture that gets our day_name option
 @pytest.fixture
-def pass_gen(request):
-  
-  # Taking passed args for length and number of chars
-  length = int(request.config.getoption("--length")) 
-  no_of_char = int(request.config.getoption("--no_of_chars"))
-  
-  # if no_of_char >= length then,
-  # Set no_of_num = 0 and no_of_char = length
-  if length <= no_of_char:
-     no_of_char = length
-     no_of_num =  0
-  else:
-     no_of_num = length - no_of_char 
+def pass_gen(request) -> tuple:
+    """
+    Fixture to accept the length and number of characters input from the command line.
+    :param request: pytest request object
 
-  # Generate the password
-  password = generate_password(no_of_num, no_of_char)
+    :return: Tuple of length and number of alpha num characters
+    """
+    # Taking passed args for length and number of chars
+    length = int(request.config.getoption("--length"))
+    no_of_alphanum = int(request.config.getoption("--no_of_alphanum"))
 
-  # Find number of alphabetic characters
-  letters = sum(c.isalpha() for c in password)
+    yield length, no_of_alphanum
 
-  # Check if the password matches the requirements
-  if letters == no_of_char and len(password) == length:
-     yield "OK"
-  else:
-     yield "NOT OK"
 
 # Test function
-def test_pass_gen(pass_gen):
-     assert pass_gen == "OK"
+def test_pass_gen(pass_gen) -> None:
+    """
+    Test function to test the password generator.
+
+    :param pass_gen: Fixture to accept the length and number of characters input from the command line.
+
+    :return: None
+    """
+    length, no_of_alphanum = pass_gen
+
+    # Generate the password
+    password = generate_password(length, no_of_alphanum)
+
+    # Find number of alphanumeric characters
+    num_of_alpha = sum(c.isalnum() for c in password)
+
+    # Check if the password matches the requirements
+    assert num_of_alpha == no_of_alphanum and len(password) == length
