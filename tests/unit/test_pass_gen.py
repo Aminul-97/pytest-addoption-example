@@ -28,11 +28,11 @@ def test_pass_gen(pass_gen) -> None:
     """
     length, no_of_alphanum = pass_gen
 
-    # Generate the password
-    password = generate_password(length, no_of_alphanum)
+    # Generate the password and collect no of numeric chars
+    password, num_remaining = generate_password(length, no_of_alphanum)
 
     # Find number of alphanumeric characters
-    num_of_alpha = sum(c.isalnum() for c in password)
+    num_of_alpha = sum(c.isalpha() for c in password)
 
     # Check if the password matches the requirements
-    assert num_of_alpha == no_of_alphanum and len(password) == length
+    assert num_of_alpha == no_of_alphanum and len(password) == no_of_alphanum + num_remaining

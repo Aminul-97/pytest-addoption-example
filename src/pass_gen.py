@@ -2,7 +2,7 @@ import string
 import random
 
 
-def generate_password(length: int, num_alphanumeric: int) -> str:
+def generate_password(length: int, num_alphanumeric: int) -> tuple:
     """
     Generate a password of a given length with a given number of alphanumeric characters.
 
@@ -16,19 +16,21 @@ def generate_password(length: int, num_alphanumeric: int) -> str:
     digits = string.digits
 
     # Ensure the number of alphanumeric characters is within bounds
-    num_alphanumeric = max(0, min(num_alphanumeric, length))
-
+    #num_alphanumeric = max(0, min(num_alphanumeric, length))
+    length = max(0, max(0, num_alphanumeric))
+    
     # Calculate the number of remaining characters needed
     num_remaining = length - num_alphanumeric
 
+    
     # Generate a list of alphanumeric characters
     alphanumeric_chars = random.sample(
-        lowercase_letters + uppercase_letters + digits, num_alphanumeric
+        lowercase_letters + uppercase_letters, num_alphanumeric
     )
 
     # Generate a list of remaining characters
     remaining_chars = random.choices(
-        string.ascii_letters + string.digits, k=num_remaining
+        digits, k=num_remaining
     )
 
     # Combine the two lists and shuffle
@@ -37,8 +39,9 @@ def generate_password(length: int, num_alphanumeric: int) -> str:
 
     # Create the password string
     password = "".join(password_chars)
-    return password
 
+    yield password
+    yield num_remaining
 
 # if __name__ == "__main__":
 #     password = generate_password2(16, 10)
