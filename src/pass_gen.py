@@ -16,22 +16,19 @@ def generate_password(length: int, num_alphanumeric: int) -> tuple:
     digits = string.digits
 
     # Ensure the number of alphanumeric characters is within bounds
-    #num_alphanumeric = max(0, min(num_alphanumeric, length))
+    # num_alphanumeric = max(0, min(num_alphanumeric, length))
     length = max(0, max(0, num_alphanumeric))
-    
+
     # Calculate the number of remaining characters needed
     num_remaining = length - num_alphanumeric
 
-    
     # Generate a list of alphanumeric characters
     alphanumeric_chars = random.sample(
         lowercase_letters + uppercase_letters, num_alphanumeric
     )
 
     # Generate a list of remaining characters
-    remaining_chars = random.choices(
-        digits, k=num_remaining
-    )
+    remaining_chars = random.choices(digits, k=num_remaining)
 
     # Combine the two lists and shuffle
     password_chars = alphanumeric_chars + remaining_chars
@@ -40,8 +37,8 @@ def generate_password(length: int, num_alphanumeric: int) -> tuple:
     # Create the password string
     password = "".join(password_chars)
 
-    yield password
-    yield num_remaining
+    return password, num_remaining
+
 
 # if __name__ == "__main__":
 #     password = generate_password2(16, 10)
