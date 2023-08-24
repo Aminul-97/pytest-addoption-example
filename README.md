@@ -28,8 +28,8 @@ The default values for the above arguments are as follows,
 
 | Args | Default value |
 | --- | --- |
-| `--length` | 10 |
-| `--no_of_chars` | 7 |
+| `--length` | 0 |
+| `--no_of_alphanum` | 0 |
 
 You can run the test in default mode by using the command below,
 ```cmd
@@ -38,5 +38,5 @@ pytest
 
 You can also pass arguments like the ones below,
 ```cmd
-pytest --length=10 --no_of_chars=6
+pytest --length=10 --no_of_alphanum=6
 ```
