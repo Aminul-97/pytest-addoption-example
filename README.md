@@ -1,42 +1,22 @@
-This repo contains the sample code for the article **A comprehensive guide on Pytest Addoption**
+# PyTest Add Options
 
-## Code
-The source code is a simple Python script that finds the code of a weekday and can be found at `src/day_code.py`. 
+This repo contains the sample code for the article - [How To Use Pytest With Command Line Options (Easy To Follow Guide)](https://pytest-with-eric.com/pytest-advanced/pytest-addoption/) 
 
-Unit Tests can be found at `tests/unit/test_addoption.py`
+This project explains how to use Pytest Add Options and pass CLI Arguments to your unit tests.
 
-Also, you'll find a test configuration file at `tests/unit/conftest.py`
+# Requirements
+* Python (3.11.4)
 
-## Requirements
-* Python (3.8+)
-
-Please create a virtual environment and activate it.
-
-Install the dependencies via the `requirements.txt` file using 
-
+Please install the dependencies via the `requirements.txt` file using 
 ```commandline
 pip install -r requirements.txt
 ```
 If you don't have Pip installed please follow instructions online on how to do it.
 
-## How To Run the Tests
-There are two arguments you can pass to the test.
-1. `--length` = Provide the length of the password (Total number of characters)
-2. `--no_of_chars` = Provide the number of alphabets for the password
-
-The default values for the above arguments are as follows,
-
-| Args | Default value |
-| --- | --- |
-| `--length` | 0 |
-| `--no_of_alphanum` | 0 |
-
-You can run the test in default mode by using the command below,
-```cmd
-pytest
+# How To Run the Unit Tests
+To run the Unit Tests, from the root of the repo run
+```commandline
+pytest -v -s
 ```
 
-You can also pass arguments like the ones below,
-```cmd
-pytest --length=10 --no_of_alphanum=6
-```
+If you have any questions about the project please raise an Issue on GitHub. 
